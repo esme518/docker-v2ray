@@ -1,4 +1,3 @@
-
 #
 # Dockerfile for v2ray
 #
