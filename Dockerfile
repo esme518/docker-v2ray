@@ -3,12 +3,20 @@
 # Dockerfile for v2ray
 #
 
+FROM ubuntu:latest as builder
+
+RUN apt-get update
+RUN apt-get install curl -y
+RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
+RUN chmod +x /tmp/go.sh
+RUN /tmp/go.sh
+
 FROM alpine:latest
 
-ADD https://storage.googleapis.com/v2ray-docker/v2ray /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/v2ctl /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geoip.dat /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geosite.dat /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 
 RUN set -ex && \
     apk --no-cache add ca-certificates && \
