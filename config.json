@@ -12,8 +12,8 @@
             "clients":[
                {
                   "id":"UUID",
-				  "level": 0,
-				  "alterId":64
+                  "level":0,
+                  "alterId":64
                }
             ]
          }
