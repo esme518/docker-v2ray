@@ -30,8 +30,6 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENV PATH /usr/bin/v2ray:$PATH
 ENV PORT 8888
 
-EXPOSE $PORT/tcp
-
 WORKDIR /etc/v2ray
 
 ENTRYPOINT ["/entrypoint.sh"]
