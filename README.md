@@ -1,3 +1,3 @@
 :whale: Dockerfiles for [V2Ray](https://github.com/v2fly/v2ray-core)
 
-forked from v2ray/install
+based on [v2fly/docker](https://github.com/v2fly/docker)
