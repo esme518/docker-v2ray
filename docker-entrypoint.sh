@@ -1,13 +1,10 @@
 #!/bin/sh
 set -e
 
-if [ -f UUID ]; then
-	UUID=$(cat UUID)
-elif [ -n "$UUID" ]; then
-	echo $UUID > UUID
-else
+if [ ! -f UUID ] && [ -z "$UUID" ]; then
 	cat /proc/sys/kernel/random/uuid > UUID
-	UUID=$(cat UUID)
+elif [ ! -f UUID ] && [ -n "$UUID" ]; then
+	echo $UUID > UUID
 fi
 
 UUID=$(cat UUID)
