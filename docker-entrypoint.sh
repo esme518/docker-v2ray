@@ -1,14 +1,23 @@
 #!/bin/sh
+set -e
 
-if [ ! -f UUID ]; then
+if [ -f UUID ]; then
+	UUID=$(cat UUID)
+elif [ -n "$UUID" ]; then
+	echo $UUID > UUID
+else
 	cat /proc/sys/kernel/random/uuid > UUID
+	UUID=$(cat UUID)
 fi
 
 UUID=$(cat UUID)
 
 # Set config.json
-sed -i "s/PORT/$PORT/g" /etc/v2ray/config.json
-sed -i "s/UUID/$UUID/g" /etc/v2ray/config.json
+if [ ! -f /etc/v2ray/config.json ]; then
+	cp /etc/v2ray/config.init /etc/v2ray/config.json
+	sed -i "s/PORT/$PORT/g" /etc/v2ray/config.json
+	sed -i "s/UUID/$UUID/g" /etc/v2ray/config.json
+fi
 
 echo starting v2ray platform
 echo starting with UUID:$UUID
