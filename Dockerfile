@@ -4,7 +4,7 @@
 
 FROM v2fly/v2fly-core
 
-COPY config.json /etc/v2ray/config.json
+COPY config.init /etc/v2ray/config.init
 COPY docker-entrypoint.sh /entrypoint.sh
 
 ENV PATH /usr/bin/v2ray:$PATH
