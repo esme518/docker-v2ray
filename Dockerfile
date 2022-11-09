@@ -13,4 +13,4 @@ ENV PORT 8888
 WORKDIR /etc/v2ray
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["v2ray", "-config=/etc/v2ray/config.json"]
+CMD ["v2ray","run","-c","/etc/v2ray/config.json"]
