@@ -19,7 +19,7 @@ RUN set -ex \
   && rm -rf /tmp/* /var/cache/apk/*
 
 ENV PATH /usr/bin/v2ray:$PATH
-ENV PORT 8888
+ENV PORT 10086
 
 WORKDIR /etc/v2ray
 
